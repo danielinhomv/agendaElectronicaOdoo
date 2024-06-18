@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.mensualidad_list" model="ir.ui.view">
+            <field name="name">administracion academica mensualidad list</field>
+            <field name="model">administracion_academica.mensualidad</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="alumno"/>
+                    <field name="curso_id"/>
+                    <field name="gestion"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.mensualidad_form" model="ir.ui.view">
+            <field name="name">administracion academica mensualidad form</field>
+            <field name="model">administracion_academica.mensualidad</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name ="curso_id"/> 
+                        <field name="alumno"/>
+                        <field name="gestion"/>
+                   </group>
+
+                    <group>
+                        <field name="costo_mensualidad"/>
+                        <field name="cantidad_meses"/>
+                        <field name="monto"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.mensualidad_action_window" model="ir.actions.act_window">
+            <field name="name">Mensualidades</field>
+            <field name="res_model">administracion_academica.mensualidad</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

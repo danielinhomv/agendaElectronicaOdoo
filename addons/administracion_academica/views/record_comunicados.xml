@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="administracion_academica.comunicado_list" model="ir.ui.view">
+            <field name="name">administracion academica comunicados list</field>
+            <field name="model">administracion_academica.comunicado</field>
+            <field name="arch" type="xml">
+                <tree string="Comunicado">
+                    <field name="tipo"/>
+                    <field name="descripcion"/>
+                    <field name="fecha"/>
+                    <field name="estado"/>
+                    <field name="profesor_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.comunicado_form" model="ir.ui.view">
+            <field name="name">administracion academica comunicados form</field>
+            <field name="model">administracion_academica.comunicado</field>
+            <field name="arch" type="xml">
+                <form string="Comunicados"> 
+                    <sheet>
+                        <group>
+                            <field name="tipo"/>
+                            <field name="descripcion"/>
+                            <field name="fecha"/>
+                            <field name="estado"/>
+                            <field name="profesor_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.comunicado_action_window" model="ir.actions.act_window">
+            <field name="name">Comunicados</field>
+            <field name="res_model">administracion_academica.comunicado</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

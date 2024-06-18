@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.curso_materia_alumno_list" model="ir.ui.view">
+            <field name="name">administracion academica curso materia alumno list</field>
+            <field name="model">administracion_academica.curso_materia_alumno</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="curso_materia_id"/>
+                    <field name="alumno_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.curso_materia_alumno_form" model="ir.ui.view">
+            <field name="name">administracion academica curso materia alumno form</field>
+            <field name="model">administracion_academica.curso_materia_alumno</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name="curso_materia_id"/>
+                        <field name="alumno_id"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.curso_materia_alumno_action_window" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">administracion_academica.curso_materia_alumno</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

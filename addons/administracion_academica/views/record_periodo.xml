@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.periodo_list" model="ir.ui.view">
+            <field name="name">administracion academica periodo list</field>
+            <field name="model">administracion_academica.periodo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="tipo_periodo"/>                   
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_final"/>
+                    <field name="gestion"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.periodo_form" model="ir.ui.view">
+            <field name="name">administracion academica periodo form</field>
+            <field name="model">administracion_academica.periodo</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name="tipo_periodo"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_final"/>
+                        <field name="gestion"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.periodo_action_window" model="ir.actions.act_window">
+            <field name="name">Períodos</field>
+            <field name="res_model">administracion_academica.periodo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

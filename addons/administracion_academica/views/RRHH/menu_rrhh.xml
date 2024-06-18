@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_academic_root" name="Academic Management"/>
+        <menuitem id="menu_academic_students" name="Students" parent="menu_academic_root" action="action_student"/>
+    </data>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="administracion_academica.asignacion_list" model="ir.ui.view">
+            <field name="name">administracion academica asignacion list</field>
+            <field name="model">administracion_academica.carga_horaria_rel</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="profesor_id"/>
+                    <field name="materia_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.asignacion_form" model="ir.ui.view">
+            <field name="name">administracion academica asignacion form</field>
+            <field name="model">administracion_academica.carga_horaria_rel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="profesor_id"/>
+                        <field name="materia_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.carga_horaria_rel_action_window" model="ir.actions.act_window">
+            <field name="name">Carga Horaria</field>
+            <field name="res_model">administracion_academica.carga_horaria_rel</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo> 

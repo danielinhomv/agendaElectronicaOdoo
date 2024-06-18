@@ -1,0 +1,19 @@
+# Ignorar todos los archivos __pycache__
+**/__pycache__/
+
+# Ignorar los archivos firebase-admin.json
+addons/administracion_academica/data/firebase-admin.json
+
+# Ignorar los archivos de log
+log/odoo-server.log
+
+# Ignorar archivos de configuración de entorno
+.env
+
+# Otras ignoraciones comunes
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*~
+

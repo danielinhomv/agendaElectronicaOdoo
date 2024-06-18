@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="administracion_academica.profesor_sucursal_rel_list" model="ir.ui.view">
+            <field name="name">administracion academica profesor_sucursal_rel list</field>
+            <field name="model">administracion_academica.profesor_sucursal_rel</field>
+            <field name="arch" type="xml">
+                <tree>
+                <field name="profesor_id"/>
+                <field name="sucursal_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- <record id="administracion_academica.profesor_form" model="ir.ui.view">
+            <field name="name">administracion academica profesor form</field>
+            <field name="model">administracion_academica.profesor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="id"/>
+                            <field name="apellidos"/>
+                            <field name="correo_electronico"/>
+                            <field name="fecha_nacimiento"/>
+                            <field name="carnet_identidad"/>
+                        </group>
+                        <group>
+                            <field name="telefono"/>
+                            <field name="direccion"/>
+                            <field name="foto" widget="image" class="oe_avatar"/>
+                        </group>
+                    </group>
+
+                    <group>
+                            <group>
+                                <field name="materias" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="profesor_sucursal_rel_ids"/>
+                            </group>
+                    </group>
+                </form>
+            </field>
+        </record> -->
+       
+        <record id="administracion_academica.profesor_sucursal_rel_action_window" model="ir.actions.act_window">
+            <field name="name">Profesores</field>
+            <field name="res_model">administracion_academica.profesor_sucursal_rel</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+    </data>
+</odoo>

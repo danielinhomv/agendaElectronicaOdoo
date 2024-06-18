@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    </data> 
+</odoo>
+        <!-- <record id="view_alumno_simplified_tree" model="ir.ui.view">
+            <field name="name">alumno.simplified.tree</field>
+            <field name="model">administracion_academica.alumno</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="foto" widget="image" options="{'size': [70, 70]}" />                
+                    <field name="apellido_paterno"/>
+                    <field name="apellido_materno"/>
+                    <field name="nombre"/>
+                </tree>
+            </field>
+        </record>
+        Define a simplified tree view for alumnos 
+        <record id="view_alumno_simplified_form" model="ir.ui.view">
+            <field name="name">alumno.simplified.form</field>
+            <field name="model">administracion_academica.alumno</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="apellido_paterno"/>
+                    <field name="apellido_materno"/>
+                    <field name="nombre"/>  
+                    <field name="calificaciones"/>  
+                                  
+                </form>
+            </field>
+        </record>
+
+  <record id="action_open_alumno_simplified_tree" model="ir.actions.act_window">
+            <field name="name">Alumnos Simplificados</field>
+            <field name="res_model">administracion_academica.alumno</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_alumno_simplified_tree"/>
+        </record>
+
+        Define an action to open the simplified form view of alumnos 
+        <record id="action_open_alumno_simplified_form" model="ir.actions.act_window">
+            <field name="name">Alumno Simplificado</field>
+            <field name="res_model">administracion_academica.alumno</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_alumno_simplified_form"/>
+        </record>-->
+
+
+        <!-- Define the simplified form view for alumnos 
+        <record id="view_alumno_simplified_form" model="ir.ui.view">
+            <field name="name">alumno.simplified.form</field>
+            <field name="model">administracion_academica.alumno</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="apellido_paterno"/>
+                    <field name="apellido_materno"/>
+                    <field name="nombre"/>  
+                    <field name="calificaciones"/>  
+                </form>
+            </field>
+        </record> -->
+
+        <!-- Define an action to open the simplified form view of alumnos 
+        <record id="action_open_alumno_simplified_form" model="ir.actions.act_window">
+            <field name="name">Alumno Simplificado</field>
+            <field name="res_model">administracion_academica.alumno</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_alumno_simplified_form"/>
+        </record>-->
+    

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="administracion_academica.director_list" model="ir.ui.view">
+            <field name="name">administracion academica director list</field>
+            <field name="model">administracion_academica.director</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.director_form" model="ir.ui.view">
+            <field name="name">administracion academica director form</field>
+            <field name="model">administracion_academica.director</field>
+            <field name="arch" type="xml">
+                <form string="Crear director">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="carnet_identidad"/>
+                            <field name="correo_electronico"/>
+                            <field name="fecha_nacimiento"/>
+                            <field name="tipo"/>
+                            <field name="telefono"/>
+                            <field name="direccion"/>
+                            <field name="sucursal"/>
+                            <field name="foto"  widget="image" class="oe_avatar"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.director_action_window" model="ir.actions.act_window">
+            <field name="name">Director del colegio</field>
+            <field name="res_model">administracion_academica.director</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
