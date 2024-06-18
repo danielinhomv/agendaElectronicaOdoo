@@ -51,6 +51,17 @@ class calificacion(models.Model):
         'administracion_academica.profesor',
         string ="profesor calificacion"
     )
+    
+    @api.model
+    def create(self, vals):
+        calificacion = super(calificacion, self).create(vals)
+        current_user = self.env.user
+        if current_user and current_user.email:
+            profesor = self.env["administracion_academica.profesor"].search(
+                [("correo_electronico", "=", current_user.email)]
+            )
+            calificacion.write({"profesor_id": profesor.id})
+        return calificacion
 
     @api.depends('alumno_id')
     def _compute_materias(self):
