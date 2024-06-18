@@ -20,7 +20,7 @@
                 action="administracion_academica.calificacion_action_window"  
                 parent="menu_estudiantes" 
                 sequence="20"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>
+                groups="administracion_academica.group_profesor"/>
 
            <menuitem id="menu_materia" 
            name="Materias" 
