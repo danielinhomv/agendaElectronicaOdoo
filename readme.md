@@ -6,7 +6,7 @@
 ### 1. Clonar el Repositorio
 * Para clonar el repositorio, debes ejecutar:
 ~~~~
-git clone https://github.com/benjamincondori/parcial-software.git
+git clone https://github.com/benjamincondori/Administracion-Academica-Odoo.git
 ~~~~
 
 ### 2. Duplicar y renombrar: 
