@@ -2,194 +2,186 @@
 <odoo>
     <data>
         <menuitem id="menu_owl_greet" name="Administracion Academica" sequence="10"/>
-            
-            <menuitem id="menu_estudiantes" 
+        
+        <menuitem id="menu_estudiantes" 
             name="Estudiantes" 
             parent="menu_owl_greet" 
             sequence="20"/>  
                 
-                <menuitem id="menu_students" 
-                name="Registrar alumno" 
-                action="administracion_academica.alumno_action_window" 
-                parent="menu_estudiantes" 
-                sequence="10"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>
+        <menuitem id="menu_students" 
+            name="Registrar alumno" 
+            action="administracion_academica.alumno_action_window" 
+            parent="menu_estudiantes" 
+            sequence="10"
+            />
                 
-                <menuitem id="menu_notas" 
-                name="Registrar nota" 
-                action="administracion_academica.calificacion_action_window"  
-                parent="menu_estudiantes" 
-                sequence="20"
-                groups="administracion_academica.group_profesor"/>
+        <menuitem id="menu_notas" 
+            name="Registrar nota" 
+            action="administracion_academica.calificacion_action_window"  
+            parent="menu_estudiantes" 
+            sequence="20"
+            />
 
-           <menuitem id="menu_materia" 
+        <menuitem id="menu_materia" 
            name="Materias" 
            parent="menu_owl_greet" 
-           sequence="30" 
-           groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+           sequence="30"
+           />  
 
-                <menuitem id="menu_materias" 
-                name="Registrar materias" 
-                action="administracion_academica.materia_action_window" 
-                parent="menu_materia" sequence="10"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+        <menuitem id="menu_materias" 
+            name="Registrar materias" 
+            action="administracion_academica.materia_action_window" 
+            parent="menu_materia" 
+            sequence="10"/>  
 
-                
-                <menuitem id="menu_horario" 
-                name="Registrar horario" 
-                action="administracion_academica.horario_action_window" 
-                parent="menu_materia" sequence="20"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+        <menuitem id="menu_horario" 
+            name="Registrar horario" 
+            action="administracion_academica.horario_action_window" 
+            parent="menu_materia" 
+            sequence="20"
+            />  
 
-                  
-                <menuitem id="menu_horario_materia" 
-                name="Asignar horario" 
-                action="administracion_academica.horario_materia_action_window" 
-                parent="menu_materia" sequence="30"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+        <menuitem id="menu_horario_materia" 
+            name="Asignar horario" 
+            action="administracion_academica.horario_materia_action_window" 
+            parent="menu_materia" 
+            sequence="30"
+            />  
 
-
-            <menuitem id="menu_clases" 
+        <menuitem id="menu_clases" 
             name="Clases" 
             parent="menu_owl_greet" 
             sequence="40"
-            groups="administracion_academica.group_profesor"/>
+            />
 
-                <menuitem id="menu_clase" 
-                name="Iniciar clase" 
-                action="administracion_academica.clase_action_window" 
-                parent="menu_clases" 
-                sequence="10"/>
+        <menuitem id="menu_clase" 
+            name="Iniciar clase" 
+            action="administracion_academica.clase_action_window" 
+            parent="menu_clases" 
+            sequence="10"/>
 
-                <menuitem id="menu_asistencia" 
-                name="Tomar asistencia" 
-                action="administracion_academica.asistencia_action_window" 
-                parent="menu_clases" 
-                sequence="10"/>
+        <menuitem id="menu_asistencia" 
+            name="Tomar asistencia" 
+            action="administracion_academica.asistencia_action_window" 
+            parent="menu_clases" 
+            sequence="10"/>
 
-            <menuitem id="menu_teachers" 
+        <menuitem id="menu_teachers" 
             name="Profesores" 
             parent="menu_owl_greet" 
-            sequence="50"  
-            groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+            sequence="50"
+            />  
                 
-                <menuitem id="menu_profesores" 
-                name="Registrar profesor" 
-                action="administracion_academica.profesor_action_window" 
-                parent="menu_teachers" 
-                sequence="10"/>
+        <menuitem id="menu_profesores" 
+            name="Registrar profesor" 
+            action="administracion_academica.profesor_action_window" 
+            parent="menu_teachers" 
+            sequence="10"/>
 
-                <menuitem id="menu_asignacion_horario" 
-                name="Asignación de materias" 
-                action="administracion_academica.carga_horaria_rel_action_window" 
-                parent="menu_teachers" 
-                sequence="20"/>
+        <menuitem id="menu_asignacion_horario" 
+            name="Asignación de materias" 
+            action="administracion_academica.carga_horaria_rel_action_window" 
+            parent="menu_teachers" 
+            sequence="20"/>
 
-            <menuitem id="menu_curso" 
+        <menuitem id="menu_curso" 
             name="Cursos" 
             parent="menu_owl_greet" 
-            sequence="60"  
-            groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+            sequence="60"
+            />  
                 
-                <menuitem id="menu_inscription" 
-                name="Inscripcion" 
-                action="administracion_academica.inscripcion_action_window"  
-                parent="menu_curso" 
-                sequence="10"/>
+        <menuitem id="menu_inscription" 
+            name="Inscripcion" 
+            action="administracion_academica.inscripcion_action_window"  
+            parent="menu_curso" 
+            sequence="10"/>
 
-                <menuitem id="menu_cursos" 
-                name="Registrar curso" 
-                action="administracion_academica.curso_action_window" 
-                parent="menu_curso" 
-                sequence="20"/>
+        <menuitem id="menu_cursos" 
+            name="Registrar curso" 
+            action="administracion_academica.curso_action_window" 
+            parent="menu_curso" 
+            sequence="20"/>
 
-                <menuitem id="menu_cursos_materia" 
-                name="Asignar materias" 
-                action="administracion_academica.curso_materia_action_window" 
-                parent="menu_curso" 
-                sequence="30"/>
+        <menuitem id="menu_cursos_materia" 
+            name="Asignar materias" 
+            action="administracion_academica.curso_materia_action_window" 
+            parent="menu_curso" 
+            sequence="30"/>
 
-            <menuitem id="menu_apoderados" 
+        <menuitem id="menu_apoderados" 
             name="Apoderados" 
             parent="menu_owl_greet" 
-            sequence="70" 
-            groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/> 
+            sequence="70"
+            /> 
             
-                <menuitem id="menu_apoderado" 
-                name="Registrar apoderado" 
-                action="administracion_academica.apoderado_action_window" 
-                parent="menu_apoderados" 
-                sequence="10"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+        <menuitem id="menu_apoderado" 
+            name="Registrar apoderado" 
+            action="administracion_academica.apoderado_action_window" 
+            parent="menu_apoderados" 
+            sequence="10"/>  
 
-                <menuitem id="menu_mensualidad" 
-                name="Pagar mensualidad" 
-                action="administracion_academica.mensualidad_action_window" 
-                parent="menu_apoderados" 
-                sequence="20"
-                groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/>  
+        <menuitem id="menu_mensualidad" 
+            name="Pagar mensualidad" 
+            action="administracion_academica.mensualidad_action_window" 
+            parent="menu_apoderados" 
+            sequence="20"/>  
                 
-            <menuitem id="menu_comunicado_prueba" 
+        <menuitem id="menu_comunicado_prueba" 
             name="Comunicados"
             action="administracion_academica.comunicado_prueba_action_window"
             parent="menu_owl_greet" 
             sequence="80"/> 
 
-            <menuitem id="menu_sucursales" 
+        <menuitem id="menu_sucursales" 
             name="Sucursales"
             parent="menu_owl_greet" 
-            sequence="90"
-            groups="administracion_academica.group_administrador"/> 
+            sequence="90"/> 
  
-                <menuitem id="menu_sucursal" 
-                name="Registrar Sucursal" 
-                action="administracion_academica.sucursal_action_window"  
-                parent="menu_sucursales" 
-                sequence="10"
-                groups="administracion_academica.group_administrador"/>
+        <menuitem id="menu_sucursal" 
+            name="Registrar Sucursal" 
+            action="administracion_academica.sucursal_action_window"  
+            parent="menu_sucursales" 
+            sequence="10"/>
 
-                <menuitem id="menu_administracion_sucursal" 
-                name="Registrar Administradores" 
-                action="administracion_academica.administrativo_action_window"
-                parent="menu_sucursales" 
-                sequence="20"
-                groups="administracion_academica.group_administrador"/>
-                 
-                <menuitem id="menu_directores_sucursal" 
-                name="Registrar Directores" 
-                action="administracion_academica.director_action_window"
-                parent="menu_sucursales" 
-                sequence="30"
-                groups="administracion_academica.group_administrador"/>
-                 
-            <menuitem id="menu_configuracion" 
+        <menuitem id="menu_administracion_sucursal" 
+            name="Registrar Administradores" 
+            action="administracion_academica.administrativo_action_window"
+            parent="menu_sucursales" 
+            sequence="20"/>
+
+        <menuitem id="menu_directores_sucursal" 
+            name="Registrar Directores" 
+            action="administracion_academica.director_action_window"
+            parent="menu_sucursales" 
+            sequence="30"/>
+
+        <menuitem id="menu_configuracion" 
             name="Configuración" 
             parent="menu_owl_greet" 
-            sequence="100" 
-            groups="administracion_academica.group_administrativo,administracion_academica.group_administrador"/> 
+            sequence="100"/> 
 
-                <menuitem id="menu_gestiones" 
-                name="Registrar Gestión" 
-                action="administracion_academica.gestion_action_window"  
-                parent="menu_configuracion" 
-                sequence="20"/>  
+        <menuitem id="menu_gestiones" 
+            name="Registrar Gestión" 
+            action="administracion_academica.gestion_action_window"  
+            parent="menu_configuracion" 
+            sequence="20"/>  
 
-                <menuitem id="menu_periodos" 
-                name="Registrar Periodos" 
-                action="administracion_academica.periodo_action_window"  
-                parent="menu_configuracion" 
-                sequence="30"/>  
+        <menuitem id="menu_periodos" 
+            name="Registrar Periodos" 
+            action="administracion_academica.periodo_action_window"  
+            parent="menu_configuracion" 
+            sequence="30"/>  
 
-                <menuitem id="menu_tipo_periodos" 
-                name="Registrar tipo de periodos" 
-                action="administracion_academica.tipo_periodo_action_window" 
-                parent="menu_configuracion" 
-                sequence="40"/>  
+        <menuitem id="menu_tipo_periodos" 
+            name="Registrar tipo de periodos" 
+            action="administracion_academica.tipo_periodo_action_window" 
+            parent="menu_configuracion" 
+            sequence="40"/>  
 
-                <menuitem id="menu_costo_mensualidad" 
-                name="Costo de mensualidad" 
-                action="administracion_academica.costo_mensualidad_action_window" 
-                parent="menu_configuracion" 
-                sequence="50"/>   
+        <menuitem id="menu_costo_mensualidad" 
+            name="Costo de mensualidad" 
+            action="administracion_academica.costo_mensualidad_action_window" 
+            parent="menu_configuracion" 
+            sequence="50"/>   
     </data>
 </odoo>

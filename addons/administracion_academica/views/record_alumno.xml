@@ -17,7 +17,7 @@
                     <div class="o_kanban_details">
                         <h4>
                         <a type="open">
-                            <field name="nombre"/> <field name="apellido_paterno"/> <field name="apellido_materno"/>
+                         <field name="nombre"/> <field name="apellidos"/>
                         </a>
                         </h4>
                         <div>
@@ -43,8 +43,9 @@
                 <tree>
                     <field name="foto" widget="image" options="{'size': [70, 70]}" />                
                     <field name="nombre"/>
-                    <field name="apellido_paterno"/>
-                    <field name="apellido_materno"/>
+                    <field name="apellidos"/>
+                    <field name="carnet_identidad"/>
+                    <field name="correo_electronico"/>
                     <field name="fecha_nacimiento"/>
                     <field name="edad"/>    
                 </tree>
@@ -59,8 +60,9 @@
                    <group>
                         <group>
                             <field name="nombre"/>
-                            <field name="apellido_paterno"/>
-                            <field name="apellido_materno"/>
+                            <field name="apellidos"/>
+                            <field name="carnet_identidad"/>
+                            <field name="correo_electronico"/>
                             <field name="fecha_nacimiento"/>
                             <field name="edad"/>
                         </group>

@@ -33,6 +33,7 @@ class ComunicadoPrueba(models.Model):
             ("todos", "Todos los Apoderados"),
             ("grupo", "Grupo de Curso"),
             ("especifico", "Apoderado Específico"),
+            ("general", "A todos")
         ],
         string="Tipo de Destinatario",
         required=True,
@@ -58,39 +59,20 @@ class ComunicadoPrueba(models.Model):
     profesor_id = fields.Many2one(
         "administracion_academica.profesor", string="Profesor que emite"
     )
+    visitas = fields.One2many(
+        'administracion_academica.comunicado_visita', 
+        inverse_name="comunicado_id",
+        string="Visitas")
     
     @api.depends("tipo")
     def _compute_display_name(self):
         for rec in self:
             rec.display_name = (f"{rec.tipo}")
-
-    # @api.model
-    # def create(self, vals):
-    #     record = super(ComunicadoPrueba, self).create(vals)
-
-    #     # Obtener los apoderados asociados al comunicado
-    #     apoderados = record.apoderado_ids
-    #     _logger.info("Apoderados asociados: %s", apoderados)
-
-    #     # Obtener los tokens de los dispositivos de los apoderados
-    #     tokens = apoderados.mapped('dispositivos_ids.token')
-    #     _logger.info("Tokens obtenidos: %s", tokens)
-
-    #     # Datos adicionales a enviar en la notificación
-    #     data = {
-    #         'id': str(record.id),
-    #         'fecha': record.fecha.strftime("%d/%m/%Y %H:%M %p"),
-    #         'titulo': record.titulo,
-    #         'mensaje': record.mensaje,
-    #     }
-
-    #     # Enviar notificación a cada token
-    #     # for token in tokens:
-    #     #     send_push_notification(token, record.titulo, record.mensaje)
-
-    #     send_push_notifications(tokens, record.titulo, record.mensaje, data)
-
-    #     return record
+    
+    @api.depends('visitas')
+    def _compute_clase(self):
+        for comunicado in self:
+            comunicado.clases = comunicado.visitas.mapped('comunicado_id')
 
     @api.model
     def create(self, vals):
@@ -121,10 +103,25 @@ class ComunicadoPrueba(models.Model):
             apoderados = alumnos.mapped("apoderado")
             _logger.info("Apoderados obtenidos grupo: %s", apoderados)
             comunicado.apoderado_ids = [(6, 0, apoderados.ids)]
-        else:  # tipo_destinatario == 'especifico'
+        elif comunicado.tipo_destinatario == "especifico" :  # tipo_destinatario == 'especifico'
             _logger.info("ENVIANDO A APODERADO ESPECIFICO")
             apoderados = comunicado.apoderado_ids
             _logger.info("Apoderados obtenidos especifico: %s", apoderados)
+        else :
+             _logger.info("ENVIANDO A APODERADO ESPECIFICO")
+             apoderados = comunicado.apoderado_ids
+             _logger.info("Apoderados obtenidos especifico: %s", apoderados)
+
+             _logger.info("ENVIANDO A TODOS LOS APODERADOS")
+             apoderados = self.env["administracion_academica.apoderado"].search([])
+             comunicado.apoderado_ids = [(6, 0, apoderados.ids)]
+
+             _logger.info("ENVIANDO A GRUPO DE CURSO")
+             inscripciones = comunicado.curso_ids.mapped("inscripciones")
+             alumnos = inscripciones.mapped("alumno_id")
+             apoderados = alumnos.mapped("apoderado")
+             _logger.info("Apoderados obtenidos grupo: %s", apoderados)
+             comunicado.apoderado_ids = [(6, 0, apoderados.ids)]
 
         tokens = apoderados.mapped("dispositivos_ids.token")
         data = {
@@ -141,5 +138,30 @@ class ComunicadoPrueba(models.Model):
         }
         send_push_notifications(tokens, comunicado.titulo, comunicado.mensaje, data)
         return comunicado
+    
+class ComunicadoVisita(models.Model):
+    _name = "administracion_academica.comunicado_visita"
+    _description = "Registro de visitas a comunicados"
+
+    comunicado_id = fields.Many2one(
+        "administracion_academica.comunicado_prueba", 
+        string="Comunicado", 
+        required=True,
+        ondelete='cascade'
+    )
+    user_id = fields.Many2one(
+        "res.users", 
+        string="Usuario", 
+        required=True,
+        ondelete='cascade'
+    )
+    fecha_visita = fields.Datetime(
+        string="Fecha de Visita", 
+        default=fields.Datetime.now, 
+        required=True
+    )
+
+  
+
 
     

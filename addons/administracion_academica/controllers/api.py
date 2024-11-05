@@ -1,5 +1,5 @@
 # academic_management/controllers/auth_api.py
-from odoo import http
+from odoo import http 
 from odoo.http import request, Response
 from odoo.tools import config
 from collections import defaultdict

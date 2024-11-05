@@ -49,6 +49,13 @@ class apoderado(models.Model):
             "El carnet de identidad debe ser único.",    
         ),
     ]
+    @api.constrains("nombre", "apellidos")
+    def _check_names(self):
+        for record in self:
+            if not record.nombre:
+                raise ValidationError("El nombre es requerido")
+            if not record.apellidos:
+                raise ValidationError("El apellido es requerido")
 
     @api.model
     def create(self, values):

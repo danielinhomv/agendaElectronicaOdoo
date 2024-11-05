@@ -1,47 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
+    <!-- Vista en lista (tree) para los comunicados -->
     <record id="administracion_academica.comunicado_list" model="ir.ui.view">
       <field name="name">comunicado_prueba.tree</field>
       <field name="model">administracion_academica.comunicado_prueba</field>
       <field name="arch" type="xml">
-          <tree>
-              <field name="tipo"/>
-              <field name="titulo"/>
-              <field name="mensaje"/>
-              <field name="tipo_destinatario"/>
-              <field name="apoderado_ids"/>
-              <field name="profesor_id"/>
-          </tree>
+        <tree>
+          <field name="tipo"/>
+          <field name="titulo"/>
+          <field name="mensaje"/>
+          <field name="tipo_destinatario"/>
+          <field name="apoderado_ids"/>
+          <field name="profesor_id"/>
+        </tree>
       </field>
     </record>
-    
-    
+
+    <!-- Vista en formulario (form) para los comunicados -->
     <record id="view_comunicado_prueba_form" model="ir.ui.view">
       <field name="name">comunicado_prueba.form</field>
       <field name="model">administracion_academica.comunicado_prueba</field>
       <field name="arch" type="xml">
-          <form string="Comunicado">
-              <sheet>
-                  <group>
-                      <field name="tipo"/>
-                      <field name="titulo"/>
-                      <field name="mensaje"/>
-                      <field name="tipo_destinatario" widget="radio"/>
-                      <field name="curso_ids" invisible="tipo_destinatario not in ['grupo']" widget="many2many_tags"/>
-                      <field name="apoderado_ids" invisible="tipo_destinatario not in ['especifico']" widget="many2many_tags"/>
-                      <field name="profesor_id"/>
-                  </group>
-              </sheet>
-          </form>
+        <form string="Comunicado">
+          <sheet>
+            <group>
+              <field name="tipo"/>
+              <field name="titulo"/>
+              <field name="mensaje"/>
+              <field name="tipo_destinatario" widget="radio"/>
+              <field name="curso_ids" invisible="tipo_destinatario != 'grupo'" widget="many2many_tags"/>
+              <field name="apoderado_ids" invisible="tipo_destinatario != 'especifico'" widget="many2many_tags"/>
+              <field name="profesor_id"/>
+            </group>
+
+            <!-- Agregar un notebook para las visitas -->
+            <notebook>
+              <page string="Visitas">
+                <field name="visitas" context="{'form_view_initial_mode': 'edit'}">
+                  <tree editable="bottom">
+                    <field name="user_id"/>
+                    <field name="fecha_visita"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
       </field>
     </record>
-    
-    <record id="administracion_academica.comunicado_prueba_action_window" model="ir.actions.act_window">
+
+    <!-- Acción de ventana para los comunicados -->
+    <record id="comunicado_prueba_action_window" model="ir.actions.act_window">
       <field name="name">Comunicados</field>
       <field name="res_model">administracion_academica.comunicado_prueba</field>
       <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="administracion_academica.comunicado_list"/>
     </record>
-  
+
+    <!-- Menú para acceder a los comunicados -->
+    <menuitem id="menu_comunicado_prueba"
+              name="Comunicados"
+              parent="menu_owl_greet"
+              action="administracion_academica.comunicado_prueba_action_window"
+              sequence="80"/>
   </data>
 </odoo>

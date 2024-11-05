@@ -65,6 +65,9 @@ docker restart odoo_school
     
 ### 8. Acceder a Odoo
 * Una vez que los contenedores estén en funcionamiento, puedes acceder a Odoo a través de la siguiente URL:
+### 8. Acceder a la db 
+docker ps
+docker exec -it odoo_school_db psql -U odoo
 
 ~~~~
 http://localhost:8069

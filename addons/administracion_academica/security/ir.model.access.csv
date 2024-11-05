@@ -27,3 +27,5 @@ access_sucursal,access_sucursal,model_administracion_academica_sucursal,base.gro
 access_director,access_director,model_administracion_academica_director,base.group_user,1,1,1,1
 access_administrativo,access_administrativo,model_administracion_academica_administrativo,base.group_user,1,1,1,1
 access_profesor_sucursal_rel,access_profesor_sucursal_rel,model_administracion_academica_profesor_sucursal_rel,base.group_user,1,1,1,1
+access_comunicado_visita,access_comunicado_visita,model_administracion_academica_comunicado_visita,base.group_user,1,1,1,1
+

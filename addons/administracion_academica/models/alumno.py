@@ -1,16 +1,17 @@
 from odoo import models, fields, api
 from ..utils.cloudinary_helper import CloudinaryHelper
 from datetime import date
-
+from odoo.exceptions import ValidationError
 
 class alumno(models.Model):
     _name = "administracion_academica.alumno"
     _description = "Relacion de los alumnos del colegio"
 
     nombre = fields.Char(string="Nombre del alumno", required=True)
-    apellido_paterno = fields.Char(string="Apellido paterno", required=True)
-    apellido_materno = fields.Char(string="Apellido materno")
+    apellidos = fields.Char(string="Apellidos", required=True)
     fecha_nacimiento = fields.Date(string="Fecha de nacimiento")
+    carnet_identidad = fields.Char(string="Canet de identidad", required=True)
+    correo_electronico = fields.Char(string="Email", required=True)
     direccion = fields.Char(string="Dirección")
     edad = fields.Integer(string="Edad", compute="_compute_edad", readonly=True)
     foto = fields.Image(string="Foto")
@@ -82,6 +83,31 @@ class alumno(models.Model):
         string = "Clases"
     )
 
+    user_id = fields.Many2one("res.users", 
+    string="Usuario relacionado", 
+    ondelete="cascade")
+
+    _sql_constraints = [
+        (
+            "correo_electronico_uniq",
+            "unique(correo_electronico)",
+            "El correo electrónico debe ser único.",
+        ),
+        (
+            "carnet_identidad_uniq",
+            "unique(carnet_identidad)",
+            "El carnet de identidad debe ser único. Ingresa otro carnet de identidad.",
+        )
+    ]
+
+    @api.constrains("nombre", "apellidos")
+    def _check_names(self):
+        for record in self:
+            if not record.nombre:
+                raise ValidationError("El nombre es requerido")
+            if not record.apellidos:
+                raise ValidationError("El apellido es requerido")
+            
     @api.depends("fecha_nacimiento")
     def _compute_edad(self):
         today = date.today()
@@ -105,7 +131,7 @@ class alumno(models.Model):
     @api.depends('alumno_comunicados')
     def _compute_comunicados(self):
         for alumno in self:
-            alumno.comunicados = alumno.alumno_comunicados.mapped('alumno_id')
+            alumno.comunicados = alumno.alumno_comunicados.mapped('comunicado_id')
 
     @api.depends('asistencias')
     def _compute_clase(self):
@@ -113,11 +139,20 @@ class alumno(models.Model):
             alumno.clases = alumno.asistencias.mapped('clase_id')
 
     @api.model
-    def create(self, vals):
-        if vals.get("foto"):
-            # Subir la imagen a Cloudinary
-            vals["foto_url"] = CloudinaryHelper.upload_image(vals["foto"])
-        return super(alumno, self).create(vals)
+    def create(self, values):
+        user_vals = {
+            'name': f"{values['nombre']} {values['apellidos']}",
+            'login': values['correo_electronico'],
+            'password': values.get('carnet_identidad'),  # Usar carnet de identidad como contraseña
+            'email': values['correo_electronico'],
+        }      
+        user = self.env['res.users'].create(user_vals)
+        if not user:
+            raise ValidationError("Error al crear el usuario del alumno.")
+         # Asignar el usuario creado al apoderado
+        values['user_id'] = user.id
+
+        return super(alumno, self).create(values)
 
     def write(self, vals):
         if vals.get("foto"):
@@ -141,10 +176,10 @@ class alumno(models.Model):
                 CloudinaryHelper.delete_image(rec.foto_url)
         return super(alumno, self).unlink()
 
-    @api.depends("nombre", "apellido_paterno", "apellido_materno")
+    @api.depends("nombre", "apellidos")
     def _compute_display_name(self):
         for rec in self:
             rec.display_name = (
-                f"{rec.apellido_paterno} {rec.apellido_materno} {rec.nombre}"
+                f"{rec.nombre} {rec.apellidos}"
             )
             

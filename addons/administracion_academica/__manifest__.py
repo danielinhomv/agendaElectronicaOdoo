@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Administración Académica",
+    'name': "Agenda electronica",
 
     'summary': "Registro de alumnos, profesores, materias, cursos, inscripciones, calificaciones, mensualidades, comunicados, asistencias, horarios, sucursales, directores, administrativos, etc.",
 
@@ -8,7 +8,7 @@
     Long description of module's purpose
     """,
 
-    'author': "Carlos Vargas",
+    'author': "Danielinho",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
