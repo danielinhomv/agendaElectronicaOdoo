@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="administracion_academica.calificacion_list" model="ir.ui.view">
+            <field name="name">administracion academica calificacion list</field>
+            <field name="model">administracion_academica.calificacion</field>
+            <field name="arch" type="xml">
+                <tree string="Calificaciones">
+                    <field name="alumno_id"/>
+                    <field name="materia_id"/>
+                    <field name="curso_id"/>
+                    <field name="periodo_id"/>
+                    <field name="descripcion"/>
+                    <field name="nota"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.calificacion_form" model="ir.ui.view">
+            <field name="name">administracion academica calificacion form</field>
+            <field name="model">administracion_academica.calificacion</field>
+            <field name="arch" type="xml">
+                <form string="calificacion"> 
+                    <group >
+                        <group col="2">
+                            <field name="materia_id"/>
+                            <field name="materias_profesor" invisible="1"/>
+                            <field name="curso_id"  />
+                        </group>
+
+                        <group col="2">
+                            <field name="periodo_id"/>
+                            <field name="alumnos_curso" invisible="1"/>      
+                            <field name="profesor_id" invisible="1"/>      
+                         </group>
+                    </group>
+                    <group >
+                            <field name="alumno_id"/>
+                    </group>
+                    <group>
+                        <group col="2">
+                            <field name="descripcion"/>
+                        </group>
+                        <group col="2">
+                             <field name="nota"/>                           
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="administracion_academica.calificacion_action_window" model="ir.actions.act_window">
+            <field name="name">Calificaciones</field>
+            <field name="res_model">administracion_academica.calificacion</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('profesor_id.user_id', '=', uid)]</field>
+
+        </record>
+    </data>
+</odoo>

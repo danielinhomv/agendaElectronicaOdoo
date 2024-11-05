@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.materia_list" model="ir.ui.view">
+            <field name="name">administracion academica materia list</field>
+            <field name="model">administracion_academica.materia</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="grado"/>
+                    <field name="profesores"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.materia_form" model="ir.ui.view">
+            <field name="name">administracion academica materia form</field>
+            <field name="model">administracion_academica.materia</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name="nombre"/>
+                        <field name="grado"/>
+                        <field name="profesores"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.materia_action_window" model="ir.actions.act_window">
+            <field name="name">Materias</field>
+            <field name="res_model">administracion_academica.materia</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

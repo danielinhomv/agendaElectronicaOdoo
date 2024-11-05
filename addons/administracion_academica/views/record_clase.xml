@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista Árbol -->
+        <record id="administracion_academica.clase_form" model="ir.ui.view">
+            <field name="name">administracion_academica clase form</field>
+            <field name="model">administracion_academica.clase</field>
+            <field name="arch" type="xml">
+                <tree string="clases">
+                            <!-- <field name="profesor_id"/> -->
+                            <field name="curso_id"/>
+                            <field name="materia_id"/>
+                </tree>
+            </field>
+        </record>  
+
+        <!-- Vista Formulario -->
+        <record id="administracion_academica.clase" model="ir.ui.view">
+            <field name="name">administracion academica clase list</field>
+            <field name="model">administracion_academica.clase</field>
+            <field name="arch" type="xml">
+                <form string="Clases">
+                    <sheet>
+                        <group>
+                            <field name="profesor_id" invisible="1"/>
+                            <field name="curso_id"/>
+                            <field name="materia_id"/>
+                            <field name="materias_profesor" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Acción para Abrir la Vista de clase -->
+        <record id="administracion_academica.clase_action_window" model="ir.actions.act_window">
+            <field name="name">Clases</field>
+            <field name="res_model">administracion_academica.clase</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('profesor_id.user_id', '=', uid)]</field>
+        </record>
+
+        <!-- Menú para Acceder a la Vista de clase -->
+    </data>
+</odoo>

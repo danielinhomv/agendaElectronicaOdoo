@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="administracion_academica.horario_list" model="ir.ui.view">
+            <field name="name">administracion academica horario list</field>
+            <field name="model">administracion_academica.horario</field>
+            <field name="arch" type="xml">
+                <tree string="horario">
+                    <field name="dia"/>
+                    <field name="hora_ini" widget="float_time"/>
+                    <field name="hora_final" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.horario_form" model="ir.ui.view">
+            <field name="name">administracion academica horario form</field>
+            <field name="model">administracion_academica.horario</field>
+            <field name="arch" type="xml">
+                <form string="Horario"> 
+                        <group >
+                            <field name="dia"/>
+                            <field name="hora_ini" widget="float_time"/>
+                            <field name="hora_final"  widget="float_time"/>
+                        </group>                        
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.horario_action_window" model="ir.actions.act_window">
+            <field name="name">Horas académicas</field>
+            <field name="res_model">administracion_academica.horario</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        Vista Árbol 
+        <record id="administracion_academica.horario_list" model="ir.ui.view">
+            <field name="name">administracion_academica horario list</field>
+            <field name="model">administracion_academica.horario</field>
+            <field name="arch" type="xml">
+                <tree string="Horarios">
+                    <field name="dia"/>
+                    <field name="hora_ini"/>
+                    <field name="hora_final"/>
+                </tree>
+            </field>
+        </record>
+
+       Vista Formulario 
+        <record id="administracion_academica.horario_form" model="ir.ui.view">
+            <field name="name">administracion_academica horario form</field>
+            <field name="model">administracion_academica.horario</field>
+            <field name="arch" type="xml">
+                <form string="Horario">
+                    <group>
+                        <field name="dia"/>
+                        <field name="hora_ini" />
+                        <field name="hora_final"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+       Acción para Abrir la Vista de horario 
+        <record id="administracion_academica.horario_action_window" model="ir.actions.act_window">
+            <field name="name">Horario</field>
+            <field name="res_model">administracion_academica.horario</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo> -->

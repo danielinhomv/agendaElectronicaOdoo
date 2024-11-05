@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="administracion_academica.materia_profesor_list" model="ir.ui.view">
+            <field name="name">administracion_academica.materias_profesor_list</field>
+            <field name="model">administracion_academica.carga_horaria_rel</field>
+            <field name="arch" type="xml">
+                <tree >
+                  <field name="materia_id"/>
+                  
+                  </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.materia_profesor_action_window" model="ir.actions.act_window">
+            <field name="name">Materias asignadas</field>
+            <field name="res_model">administracion_academica.carga_horaria_rel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="administracion_academica.materia_profesor_list"/>
+            <!-- <field name="view_id" ref="administracion_academica.materia_profesor_form"/> -->
+            <field name="domain">[('profesor_id.user_id', '=', uid)]</field>
+ 
+        </record>
+    </data>
+</odoo>
+

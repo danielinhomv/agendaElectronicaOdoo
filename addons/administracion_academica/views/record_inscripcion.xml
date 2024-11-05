@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.inscripcion_list" model="ir.ui.view">
+            <field name="name">administracion academica inscripcion list</field>
+            <field name="model">administracion_academica.inscripcion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="alumno_id"/>
+                    <field name="curso_id"/>
+                    <field name="gestion"/>
+                    <field name="cantidad_mensualidad"/>
+                    <field name="estado_pago"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.inscripcion_form" model="ir.ui.view">
+            <field name="name">administracion academica inscripcion form</field>
+            <field name="model">administracion_academica.inscripcion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                          <group>
+                            <field name="alumno_id"/>
+                            <field name="curso_id"/>
+                            <field name="fecha"/>
+                            <field name="gestion"/>
+                         </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.inscripcion_action_window" model="ir.actions.act_window">
+            <field name="name">Inscripciones</field>
+            <field name="res_model">administracion_academica.inscripcion</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

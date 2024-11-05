@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista Árbol -->
+        <record id="administracion_academica.asistencia_form" model="ir.ui.view">
+            <field name="name">administracion_academica asistencia form</field>
+            <field name="model">administracion_academica.asistencia</field>
+            <field name="arch" type="xml">
+                <tree string="Asistencias" editable="top">
+                    <header>
+                    <!--Aparece cuando se selecciona el checkbox del registro del alumno-->
+                        <button string= "Terminar lista" type="object" name= "enviar_notificaciones"/>
+                    </header>
+                            <field name="alumno_id"/>
+                            <field name="clase_id"/>
+                            <field name="fecha"/>
+                            <field name="estado"/>
+                </tree> 
+            </field>
+        </record>
+
+        <!-- Vista Formulario -->
+        <record id="administracion_academica.asistencia_list" model="ir.ui.view">
+            <field name="name">administracion academica asistencia list</field>
+            <field name="model">administracion_academica.asistencia</field>
+            <field name="arch" type="xml">
+                <form string="Asistencias">
+                    <sheet>
+                        <group>
+                            <field name="alumno_id"/>
+                            <field name="clase_id"/>
+                            <field name="fecha"/>
+                            <field name="estado"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="administracion_academica.asistencia_action_window" model="ir.actions.act_window">
+            <field name="name">Asistencias</field>
+            <field name="res_model">administracion_academica.asistencia</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

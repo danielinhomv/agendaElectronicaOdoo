@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="administracion_academica.horario_materia_list" model="ir.ui.view">
+            <field name="name">administracion academica horario materia list</field>
+            <field name="model">administracion_academica.horario_materia</field>
+            <field name="arch" type="xml">
+                <tree string="Horarios">
+                    <field name="horario_id"/>
+                    <!-- <field name="materia_id"/> -->
+                    <field name="carga_horaria_id"/>
+                    <field name="curso_id"/>
+                    <field name="sucursal_id"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.horario_materia_form" model="ir.ui.view">
+            <field name="name">administracion academica horario materias form</field>
+            <field name="model">administracion_academica.horario_materia</field>
+            <field name="arch" type="xml">
+                <form string="Horarios"> 
+                        <group >
+                            <field name="horario_id"/>
+                            <!-- <field name="materia_id"/> -->
+                            <field name="carga_horaria_id"/>
+                            <field name="curso_id"/>
+                        </group>                        
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.horario_materia_action_window" model="ir.actions.act_window">
+            <field name="name">Horarios</field>
+            <field name="res_model">administracion_academica.horario_materia</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="administracion_academica.horario_materia_list" model="ir.ui.view">
+            <field name="name">administracion_academica horario materia list</field>
+            <field name="model">administracion_academica.horario_materia</field>
+            <field name="arch" type="xml">
+                <tree string="Horarios">
+                    <field name="horario_id"/>
+                    <field name="materia_id"/>
+                    <field name="curso_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.horario_materia_form" model="ir.ui.view">
+            <field name="name">administracion academica horario materia form</field>
+            <field name="model">administracion_academica.horario_materia</field>
+            <field name="arch" type="xml">
+                <form string="Horario">
+                        <group>
+                            <field name="horario_id"/>
+                            <field name="materia_id" />
+                            <field name="curso_id"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <record id="administracion_academica.horario_materia_action_window" model="ir.actions.act_window">
+            <field name="name">Horario Clase</field>
+            <field name="res_model">administracion_academica.horario_materia</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo> -->

@@ -1,0 +1,34 @@
+<!-- student_views.xml -->
+<odoo>
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">academic.student.form</field>
+        <field name="model">academic.student</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="student_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">academic.student.tree</field>
+        <field name="model">academic.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="student_number"/>
+                <field name="work_email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">academic.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_academic_root" name="Academic Management"/>
+    <menuitem id="menu_academic_students" name="Students" parent="menu_academic_root" action="action_student"/>
+</odoo>

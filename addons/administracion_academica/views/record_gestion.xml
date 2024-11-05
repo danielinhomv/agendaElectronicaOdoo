@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.gestion_list" model="ir.ui.view">
+            <field name="name">administracion academica gestion list</field>
+            <field name="model">administracion_academica.gestion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="year"/>                   
+                    <field name="periodos"/>
+                    <!-- <field name="inscripciones"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.gestion_form" model="ir.ui.view">
+            <field name="name">administracion academica gestion form</field>
+            <field name="model">administracion_academica.gestion</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name="year"/>
+                        <field name="periodos"/>
+                        <!-- <field name="inscripciones"/> -->
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.gestion_action_window" model="ir.actions.act_window">
+            <field name="name">Gestiones</field>
+            <field name="res_model">administracion_academica.gestion</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.costo_mensualidad_list" model="ir.ui.view">
+            <field name="name">administracion academica costo mensualidad list</field>
+            <field name="model">administracion_academica.costo_mensualidad</field>
+            <field name="arch" type="xml">
+                <tree string="Costo de mensualidad">
+                    <field name="grado"/>
+                    <field name="costo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.costo_mensualidad_form" model="ir.ui.view">
+            <field name="name">administracion academica costo mensualidad form</field>
+            <field name="model">administracion_academica.costo_mensualidad</field>
+            <field name="arch" type="xml">
+                <form string="Costo de mensualidad">
+                   <group>
+                        <field name="grado"/>
+                        <field name="costo"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.costo_mensualidad_action_window" model="ir.actions.act_window">
+            <field name="name">Costo de mensualidad</field>
+            <field name="res_model">administracion_academica.costo_mensualidad</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

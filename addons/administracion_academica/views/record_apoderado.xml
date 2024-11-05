@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="administracion_academica.apoderado_list" model="ir.ui.view">
+            <field name="name">administracion academica apoderado list</field>
+            <field name="model">administracion_academica.apoderado</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="carnet_identidad"/>
+                    <field name="correo_electronico"/>
+                    <field name="telefono"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.apoderado_form" model="ir.ui.view">
+            <field name="name">administracion academica apoderado form</field>
+            <field name="model">administracion_academica.apoderado</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="carnet_identidad"/>
+                        </group>
+                        <group>
+                            <field name="telefono"/>
+                            <field name="direccion"/>
+                            <field name="correo_electronico"/>
+                        </group>
+                    </group>
+                    <group string="Alumnos">
+                       <field name="alumno"/>
+                    </group>
+                    <group string="Comunicados">
+                        <field name="comunicados"/>
+                     </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.apoderado_action_window" model="ir.actions.act_window">
+            <field name="name">Apoderados</field>
+            <field name="res_model">administracion_academica.apoderado</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- <record id="rule_apoderado_by_sucursal" model="ir.rule">
+            <field name="name">Apoderado por Sucursal</field>
+            <field name="model_id" ref="model_administracion_academica_apoderado"/>
+            <field name="domain_force">[('sucursal_id', 'in', [user.administrativo_id.sucursal_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record> -->
+
+    </data>
+</odoo>

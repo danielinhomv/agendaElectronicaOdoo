@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- <record id="administracion_academica.curso_materia_list" model="ir.ui.view">
+            <field name="name">administracion academica curso materia list</field>
+            <field name="model">administracion_academica.curso_materia</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="curso_id"/>
+                    <field name="materia_id"/>
+                </tree>
+            </field>
+        </record> -->
+
+        <record id="administracion_academica.curso_materia1_list" model="ir.ui.view">
+            <field name="name">administracion academica curso materia list</field>
+            <field name="model">administracion_academica.curso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="cursos_materia"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="administracion_academica.curso_materia1_form" model="ir.ui.view">
+            <field name="name">administracion academica curso materia form</field>
+            <field name="model">administracion_academica.curso</field>
+            <field name="arch" type="xml">
+                <form>
+                   <group>
+                        <field name="nombre"/>
+                        <field name="cursos_materia"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+       
+        <record id="administracion_academica.curso_materia_action_window" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">administracion_academica.curso</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_id" ref="administracion_academica.curso_materia1_list"/> -->
+            <field name="view_ids" eval="[(5, 0, 0), 
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('administracion_academica.curso_materia1_list')}), 
+                (0, 0, {'view_mode': 'form', 'view_id': ref('administracion_academica.curso_materia1_form')})]"/>
+
+        </record>
+
+
+    </data>
+</odoo>
