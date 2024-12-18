@@ -1,21 +1,20 @@
-# Usa la imagen base de Odoo
+# Imagen base de Odoo 17
 FROM odoo:17
 
-# Copia los archivos de configuración
-# COPY ./config/odoo.conf /etc/odoo/odoo.conf
+# Configurar variables de entorno
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Copia los addons personalizados
-# COPY ./addons /mnt/extra-addons
+# Directorio de trabajo
+WORKDIR /mnt/extra-addons
 
-# Copia el archivo de inicialización
-COPY ./init.sh /docker-entrypoint-init.d/init.sh
+# Copiar tus archivos personalizados (módulos y configuraciones)
+COPY . /mnt/extra-addons
 
-# Haz que el archivo de inicialización sea ejecutable
-USER root
-RUN chmod +x /docker-entrypoint-init.d/init.sh
+# Instalar dependencias requeridas de Python
+RUN pip install --no-cache-dir PyJWT cloudinary firebase-admin
 
-# Vuelve al usuario odoo
-USER odoo
+# Exponer el puerto de Odoo
+EXPOSE 8069
 
-# Establece el punto de entrada predeterminado
-# CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
+# Comando por defecto para ejecutar el servidor Odoo
+CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
