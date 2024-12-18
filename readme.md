@@ -78,3 +78,67 @@ docker exec -it odoo_school_db psql -U odoo
 ~~~~
 http://localhost:8069
 ~~~~
+### 8. en ubuntu
+systemctl status docker
+cd administracion_academica
+ls -a
+cp .env.example .env
+cd addons/administracion_academica
+
+nano firebase-admin.example
+rm -i firebase-admin.example
+
+
+docker build -t odoo-academico .
+
+sudo apt update
+
+sudo apt install docker-compose
+
+
+docker-compose up -d    ----si utilizas docker composer.yaml
+ 
+docker run -d -p 8069:8069 --name odoo-academico-container odoo-academico --si no utilizas docker composer.yaml
+
+
+---vajar desde docker hub-----
+cd ~  # (u otro directorio de tu elección)
+
+# Iniciar sesión en Docker Hub (si es necesario)
+docker login
+
+# Descargar la imagen desde Docker Hub
+docker pull nombre_usuario/odoo-academico:latest
+
+# Verificar que la imagen esté en tu máquina
+docker images
+
+# Ejecutar el contenedor de Odoo 
+docker run -d -p 8069:8069 --name odoo-academico-container nombre_usuario/odoo-academico:latest
+Estos son los pasos para descargar la imagen de Docker desde Docker Hub y ejecutarla. 
+Si tienes un archivo docker-compose.yml adecuado, también puedes usar
+ docker-compose up -d en su lugar para simplificar el proceso.
+
+
+---eliminar imagenes---
+primero detener los contenedores:docker stop $(docker ps -a -q)
+luego eliminar los contenedores : docker rm $(docker ps -a -q)
+luego eliminar las imagenes :docker rmi -f 3c84adb64635
+luego verifica si existen imagenes : docker images
+
+
+---subir imagen a docker hub----
+1- crea la imagen 
+2- agrega etiqueta :docker tag <imagen_local> <usuario_docker_hub>/<nombre_repo>:<tag>
+3-sube : docker push danielinho/odoo-academico:latest
+//latest es el nombre de la etiqueta , es el nombre de la imagen en tu el repositorio
+
+--vajar la imagen en ubuntu--
+1. docker login
+2. docker pull <usuario/repositorio:nombre de tu etiqueta o nombre que aparece en el tag en docker hub>
+3. ejecutar con docker-compose up -d en caso que tengas contenedores dentro
+
+
+----bd---
+psql -h db -U odoo -d postgres
+docker-compose up -d --build (el mas confiable crea la imagen desde cero con el dockerfile)
