@@ -85,8 +85,7 @@ class AuthAPI(http.Controller):
                     {
                         "id": student.id,
                         "nombre": student.nombre,
-                        "apellido_paterno": student.apellido_paterno,
-                        "apellido_materno": student.apellido_materno,
+                        "apellidos": student.apellidos,
                         "fecha_nacimiento": (
                             student.fecha_nacimiento.strftime("%Y-%m-%d")
                             if student.fecha_nacimiento
@@ -276,6 +275,7 @@ class AuthAPI(http.Controller):
                         "id": comunicado.id,
                         "titulo": comunicado.titulo,
                         "mensaje": comunicado.mensaje,
+                        "bytePdfJson": comunicado.bytePdfJson,
                         "fecha": comunicado.fecha.strftime("%d/%m/%Y %H:%M %p"),
                         "tipo": comunicado.tipo,
                         "remitente": f"{comunicado.profesor_id.nombre} {comunicado.profesor_id.apellidos}"
@@ -958,5 +958,61 @@ class AuthAPI(http.Controller):
                     ("Access-Control-Allow-Origin", CORS),
                 ],
             )
+
+    @http.route("/api/registrar_visita", auth="public", type="json", methods=["POST"])
+    def registrar_visita(self, **kwargs):
+        try:
+            # Obtener los datos del POST request
+            params = json.loads(request.httprequest.data)
+            comunicado_id = params.get("comunicado_id")
+            user_id = params.get("user_id")
+
+            # Validar que los datos requeridos estén presentes
+            if not comunicado_id or not user_id :
+                return {
+                    "error": "Faltan datos requeridos (comunicado_id, user_id)",
+                    "success": False,
+                }
+
+            # Buscar el comunicado asociado al comunicado_id
+            comunicado = request.env["administracion_academica.comunicado_prueba"].sudo().search([("id", "=", comunicado_id)], limit=1)
+
+            if not comunicado:
+                return {
+                    "error": "Comunicado no encontrado",
+                    "success": False,
+                }
+
+            # Buscar el usuario asociado al user_id
+            user = request.env["res.users"].sudo().search([("id", "=", user_id)], limit=1)
+
+            if not user:
+                return {
+                    "error": "Usuario no encontrado",
+                    "success": False,
+                }
+
+            # Crear el comunicado de visita
+            visita = request.env["administracion_academica.comunicado_visita"].sudo().create(
+                {
+                    "comunicado_id": comunicado.id,
+                    "user_id": user.id
+                }
+            )
+
+            return {
+                "success": True,
+                "message": "Visita registrada correctamente",
+                "id": visita.id,
+                "fecha": visita.fecha_visita
+            }
+        except Exception as e:
+            _logger.error("Error al registrar visita: %s", str(e))
+            return {
+                "error": "Error Interno del Servidor",
+                "message": str(e),
+                "success": False,
+            }
+
     
 

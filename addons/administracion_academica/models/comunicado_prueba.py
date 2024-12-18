@@ -1,7 +1,8 @@
+import base64
+import json
 from odoo import models, fields, api
 from ..utils.firebase import send_push_notification, send_push_notifications
-from datetime import date, datetime, timedelta
-import time
+from datetime import date, datetime
 import pytz
 import logging
 
@@ -27,7 +28,26 @@ class ComunicadoPrueba(models.Model):
         default="General",
     )
     titulo = fields.Char(string="Título", required=True)
+    
     mensaje = fields.Text(string="Mensaje", required=True)
+    
+    pdf_file = fields.Binary(string='Archivo PDF', help="Archivo PDF a cargar")
+    
+    bytePdfJson = fields.Text(string="Bytes en formato JSON")
+
+    @api.onchange('pdf_file')
+    def onchange_pdf(self):
+        if self.pdf_file:
+            bytes_pdf = base64.b64decode(self.pdf_file)
+            lista_enteros = list(bytes_pdf)
+            self.bytePdfJson = json.dumps(lista_enteros)  # Convertir a JSON
+            _logger.info("PDF convertido a JSON de bytes")
+            _logger.info(self.bytePdfJson)
+
+        else:
+            self.bytePdfJson = ""
+            _logger.info("No se pudo cargar el archivo PDF en JSON")
+
     tipo_destinatario = fields.Selection(
         [
             ("todos", "Todos los Apoderados"),
@@ -90,6 +110,10 @@ class ComunicadoPrueba(models.Model):
         vals['fecha'] = now_bolivia_naive
         
         comunicado = super(ComunicadoPrueba, self).create(vals)
+        _logger.info("VALORES")
+        _logger.info(vals)
+        _logger.info("COMUNICADO")
+        _logger.info(comunicado)
         if comunicado.tipo_destinatario == "todos":
             _logger.info("ENVIANDO A TODOS LOS APODERADOS")
             apoderados = self.env["administracion_academica.apoderado"].search([])
@@ -129,6 +153,7 @@ class ComunicadoPrueba(models.Model):
             "fecha": comunicado.fecha.strftime("%d/%m/%Y %H:%M %p"),
             "titulo": comunicado.titulo,
             "mensaje": comunicado.mensaje,
+            "bytePdfJson":comunicado.bytePdfJson,
             "tipo": comunicado.tipo,
             "remitente": (
                 f"{comunicado.profesor_id.nombre} {comunicado.profesor_id.apellidos}"
@@ -136,6 +161,9 @@ class ComunicadoPrueba(models.Model):
                 else "Administración Académica"
             ),
         }
+        _logger.info("Notificacion")
+        _logger.info(data)
+
         send_push_notifications(tokens, comunicado.titulo, comunicado.mensaje, data)
         return comunicado
     

@@ -28,6 +28,8 @@
               <field name="tipo"/>
               <field name="titulo"/>
               <field name="mensaje"/>
+              <field name="pdf_file" widget="binary"/>
+              <field name="bytePdfJson" invisible="1"/>
               <field name="tipo_destinatario" widget="radio"/>
               <field name="curso_ids" invisible="tipo_destinatario != 'grupo'" widget="many2many_tags"/>
               <field name="apoderado_ids" invisible="tipo_destinatario != 'especifico'" widget="many2many_tags"/>
@@ -59,10 +61,10 @@
     </record>
 
     <!-- Menú para acceder a los comunicados -->
-    <menuitem id="menu_comunicado_prueba"
-              name="Comunicados"
-              parent="menu_owl_greet"
-              action="administracion_academica.comunicado_prueba_action_window"
-              sequence="80"/>
+<!-- <menuitem id="menu_comunicado_prueba"
+          name="Comunicados"
+          action="administracion_academica.comunicado_prueba_action_window"
+          sequence="80"/> -->
+
   </data>
 </odoo>

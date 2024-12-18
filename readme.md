@@ -36,6 +36,10 @@ docker-compose up -d
 
 ~~~~
 docker exec -it odoo_school bash
+pip install PyJWT
+pip install cloudinary
+pip install firebase-admin
+
 ~~~~
 
 * Para instalar los paquetes, debes ejecutar:
@@ -66,9 +70,11 @@ docker restart odoo_school
 ### 8. Acceder a Odoo
 * Una vez que los contenedores estén en funcionamiento, puedes acceder a Odoo a través de la siguiente URL:
 ### 8. Acceder a la db 
-docker ps
-docker exec -it odoo_school_db psql -U odoo
 
+docker exec -it odoo_school_db psql -U odoo
+\l listar base de datos
+\c "nombre de la base de datos" conectarte a una base de datos
+\dt listar las tablas de la base de datos
 ~~~~
 http://localhost:8069
 ~~~~
